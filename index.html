@@ -3,276 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Shadow Tube</title>
+<title>Shadow Tube | Official</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;
+:root {
+    --primary: #0084ff;
+    --accent: #00d2ff;
+    --dark: #070b14;
+    --card-glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(255, 255, 255, 0.08);
 }
 
-body{
-min-height:100vh;
-background:linear-gradient(135deg,#2196F3 0%,#1976D2 30%,#FFFFFF 100%);
-overflow-x:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* ===== PAGE SYSTEM (FIXED) ===== */
-
-.page{
-display:none;
-width:100%;
-min-height:100vh;
-padding:20px;
+body {
+    background-color: var(--dark);
+    color: white;
+    min-height: 100vh;
 }
 
-.page.active{
-display:block;
+/* ===== BACKGROUND ELEMENTS ===== */
+.bg-decor {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 20% 30%, rgba(0, 132, 255, 0.1), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 234, 0.05), transparent 40%);
 }
 
-/* ===== HOME ===== */
-
-.home-container{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-padding:20px;
+/* ===== PAGE SYSTEM ===== */
+.page {
+    display: none;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 30px 20px;
 }
 
-.app-title{
-font-size:3.5rem;
-font-weight:800;
-color:white;
-text-align:center;
-margin-bottom:60px;
-text-shadow:0 4px 12px rgba(0,0,0,0.2);
+.page.active {
+    display: block;
+    animation: pageIn 0.5s ease-out;
 }
 
-.card-container{
-width:100%;
-max-width:400px;
+@keyframes pageIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.feature-card{
-display:block;
-background:rgba(255,255,255,0.98);
-border-radius:28px;
-padding:35px 30px;
-margin:20px 0;
-text-decoration:none;
-text-align:center;
-box-shadow:0 12px 35px rgba(33,150,243,0.25);
-border:2px solid rgba(255,255,255,0.4);
-transition:0.3s;
+/* ===== HOME PAGE ENHANCEMENTS ===== */
+.main-header {
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-.feature-card:active{
-transform:translateY(-8px);
-box-shadow:0 20px 45px rgba(33,150,243,0.35);
+.brand-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 22px;
+    margin-bottom: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    border: 2px solid var(--border);
+    object-fit: cover;
 }
 
-.feature-card h2{
-font-size:2.4rem;
-font-weight:700;
-color:#1565C0;
-margin-bottom:10px;
+.app-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.feature-card p{
-font-size:1.3rem;
-color:#546E7A;
-font-weight:500;
+/* Live Status Section (Filling the Gap) */
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    background: var(--card-glass);
+    border: 1px solid var(--border);
+    padding: 15px 20px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    font-size: 0.85rem;
 }
 
-/* ===== FEATURE PAGE ===== */
+.status-item { display: flex; align-items: center; gap: 8px; }
+.dot { width: 8px; height: 8px; background: #4CAF50; border-radius: 50%; box-shadow: 0 0 10px #4CAF50; }
 
-.feature-page{
-min-height:100vh;
-background:white;
-border-radius:40px 40px 0 0;
-padding:35px 25px;
-margin-top:20px;
-box-shadow:0 -10px 50px rgba(0,0,0,0.1);
-animation:fadeIn .4s ease;
+/* Main Cards */
+.feature-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 15px;
+    transition: 0.3s;
 }
 
-.feature-header h1{
-font-size:2.8rem;
-font-weight:800;
-color:#0D47A1;
-margin-bottom:15px;
+.feature-card:active { transform: translateY(-3px); background: rgba(255,255,255,0.08); }
+
+.card-img-preview {
+    width: 65px;
+    height: 65px;
+    border-radius: 14px;
+    object-fit: cover;
 }
 
-.feature-image{
-width:100%;
-height:220px;
-border-radius:20px;
-object-fit:cover;
-margin:25px 0;
-box-shadow:0 8px 25px rgba(0,0,0,0.15);
+.card-info h2 { font-size: 1.2rem; color: #fff; margin-bottom: 2px; }
+.card-info p { font-size: 0.85rem; color: #94a3b8; }
+
+/* Quick Features Grid (Filling more space) */
+.quick-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 25px;
 }
 
-.feature-list{
-list-style:none;
-margin:40px 0;
+.grid-item {
+    background: var(--card-glass);
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 18px;
+    text-align: center;
 }
 
-.feature-list li{
-background:#E3F2FD;
-border-radius:18px;
-padding:24px 25px;
-margin:18px 0;
-border-left:8px solid #2196F3;
-font-size:1.6rem;
-font-weight:600;
-color:#1565C0;
+.grid-item i { font-size: 1.2rem; display: block; margin-bottom: 5px; }
+.grid-item span { font-size: 0.75rem; color: #94a3b8; font-weight: 600; }
+
+/* ===== CONTENT PAGES ===== */
+.content-card {
+    background: white;
+    color: #111;
+    border-radius: 35px;
+    padding: 25px;
+    margin-top: 10px;
 }
 
-.download-button{
-display:block;
-background:linear-gradient(135deg,#2196F3,#1976D2);
-color:white;
-text-decoration:none;
-text-align:center;
-font-size:1.8rem;
-font-weight:700;
-padding:25px;
-border-radius:20px;
-margin:40px 0 25px 0;
-box-shadow:0 10px 30px rgba(33,150,243,0.4);
+.hero-img { width: 100%; border-radius: 20px; margin: 15px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+.feat-list { list-style: none; margin: 20px 0; }
+.feat-list li {
+    padding: 14px 18px;
+    background: #f8fafc;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #334155;
+    border-left: 4px solid var(--primary);
 }
 
-.back-button{
-display:block;
-background:#F5F5F5;
-color:#1565C0;
-text-decoration:none;
-text-align:center;
-font-size:1.6rem;
-font-weight:600;
-padding:22px;
-border-radius:18px;
-margin-top:20px;
-border:2px solid #E0E0E0;
+.dl-btn {
+    display: block;
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 20px;
 }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(30px);}
-to{opacity:1;transform:translateY(0);}
+.back-link {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 600;
 }
-
 </style>
 </head>
-
 <body>
 
-<!-- HOME -->
+<div class="bg-decor"></div>
+
 <section id="home" class="page active">
-<div class="home-container">
-<h1 class="app-title">Shadow Tube</h1>
+    <div class="main-header">
+        <img src="https://i.ibb.co/G3RpM09c/image-search-1744274983510.png" class="brand-logo" alt="Logo">
+        <h1 class="app-title">Shadow Tube</h1>
+    </div>
 
-<div class="card-container">
-<a href="#youtube" class="feature-card">
-<h2>YouTube</h2>
-<p>Enhanced YouTube Experience</p>
-</a>
+    <div class="status-bar">
+        <div class="status-item"><span class="dot"></span> Servers Live</div>
+        <div class="status-item">v4.2.0 Stable</div>
+    </div>
 
-<a href="#downloader" class="feature-card">
-<h2>Downloader</h2>
-<p>Download Videos & Audio</p>
-</a>
-</div>
+    <div class="card-container">
+        <a href="#youtube" class="feature-card">
+            <img src="https://i.ibb.co/G3RpM09c/image-search-1744274983510.png" class="card-img-preview">
+            <div class="card-info">
+                <h2>YouTube Pro</h2>
+                <p>Music & Video without Ads</p>
+            </div>
+        </a>
 
-</div>
+        <a href="#downloader" class="feature-card">
+            <img src="https://i.ibb.co/93qCJgkF/1770310362429.png" class="card-img-preview">
+            <div class="card-info">
+                <h2>Fast Downloader</h2>
+                <p>Save 4K Video & MP3</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="quick-grid">
+        <div class="grid-item">🚀 <span>High Speed</span></div>
+        <div class="grid-item">🛡️ <span>Secure</span></div>
+        <div class="grid-item">🔋 <span>Battery Save</span></div>
+        <div class="grid-item">💎 <span>Premium</span></div>
+    </div>
+
+    <p style="text-align: center; color: #475569; font-size: 0.75rem; margin-top: 40px;">
+        Trusted by millions of users worldwide.<br>No login required.
+    </p>
 </section>
 
-<!-- YOUTUBE -->
 <section id="youtube" class="page">
-<div class="feature-page">
-
-<div class="feature-header">
-<h1>YouTube Features</h1>
-<p style="font-size:1.5rem;color:#546E7A;">Premium YouTube experience with advanced features</p>
-</div>
-
-<img src="https://i.ibb.co/G3RpM09c/image-search-1744274983510.png" class="feature-image">
-
-<ul class="feature-list">
-<li>Background Music Player</li>
-<li>Ads Free Experience</li>
-<li>Video Download</li>
-<li>Fast Streaming</li>
-<li>Clean Modern UI</li>
-</ul>
-
-<a href="https://modsfire.com/m7CXE86MH0QUL36" target="_blank" class="download-button">
-Download YouTube App
-</a>
-
-<a href="#home" class="back-button">← Back to Home</a>
-
-</div>
+    <div class="content-card">
+        <h2 style="font-size: 1.6rem;">Shadow YouTube</h2>
+        <p style="color: #64748b; font-size: 0.9rem;">Advanced premium features unlocked.</p>
+        
+        <img src="https://i.ibb.co/G3RpM09c/image-search-1744274983510.png" class="hero-img">
+        
+        <ul class="feat-list">
+            <li>Block All Video Ads</li>
+            <li>Background Playback</li>
+            <li>High-Quality Audio</li>
+            <li>In-built Video - Audio downloader</li>
+        </ul>
+        
+        <a href="https://modsfire.com/2mw2781sDhIl1g3" target="_blank" class="dl-btn">Download APK Now</a>
+        <a href="#home" class="back-link">Go Back</a>
+    </div>
 </section>
 
-<!-- DOWNLOADER -->
 <section id="downloader" class="page">
-<div class="feature-page">
-
-<div class="feature-header">
-<h1>Downloader Features</h1>
-<p style="font-size:1.5rem;color:#546E7A;">Fast and reliable media downloader</p>
-</div>
-
-<img src="https://i.ibb.co/93qCJgkF/1770310362429.png" class="feature-image">
-
-<ul class="feature-list">
-<li>YouTube Video Download</li>
-<li>Audio Download (MP3)</li>
-<li>High Speed Download</li>
-<li>Simple UI</li>
-<li>Background Download</li>
-</ul>
-
-<a href="https://modsfire.com/y52HlF9irQ3Pt5h" target="_blank" class="download-button">
-Download Downloader App
-</a>
-
-<a href="#home" class="back-button">← Back to Home</a>
-
-</div>
+    <div class="content-card">
+        <h2 style="font-size: 1.6rem;">Video Downloader</h2>
+        <p style="color: #64748b; font-size: 0.9rem;">Grab media from any platform.</p>
+        
+        <img src="https://i.ibb.co/93qCJgkF/1770310362429.png" class="hero-img">
+        
+        <ul class="feat-list">
+            <li>Supports 4K/8K Resolution</li>
+            <li>Fast MP3 Converter</li>
+            <li>Social Media Support</li>
+            <li>Built-in File Manager</li>
+        </ul>
+        
+        <a href="https://modsfire.com/79cbviIaI15X1a2" target="_blank" class="dl-btn">Download APK Now</a>
+        <a href="#home" class="back-link">Go Back</a>
+    </div>
 </section>
 
-<!-- ===== FIXED NAVIGATION SCRIPT ===== -->
 <script>
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function() {
+    function showPage(id, pushState = true) {
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        const target = document.querySelector(id);
+        if (target) {
+            target.classList.add("active");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            if (pushState) history.pushState({ pageId: id }, "", id);
+        }
+    }
 
-function showPage(id){
-document.querySelectorAll(".page").forEach(p=>{
-p.classList.remove("active");
-});
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", function(e) {
+            const target = this.getAttribute("href");
+            if (target.length > 1) {
+                e.preventDefault();
+                showPage(target);
+            }
+        });
+    });
 
-const page=document.querySelector(id);
-if(page){
-page.classList.add("active");
-window.scrollTo({top:0,behavior:"smooth"});
-}
-}
+    window.addEventListener("popstate", function(event) {
+        if (event.state && event.state.pageId) {
+            showPage(event.state.pageId, false);
+        } else {
+            showPage("#home", false);
+        }
+    });
 
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-link.addEventListener("click",function(e){
-const target=this.getAttribute("href");
-if(target.length>1){
-e.preventDefault();
-showPage(target);
-}
-});
-});
-
+    history.replaceState({ pageId: "#home" }, "", "#home");
 });
 </script>
 
